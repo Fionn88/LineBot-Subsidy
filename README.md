@@ -4,8 +4,9 @@
 
 ## LineID：@044ejumg
 
-- v1：輸入特定津貼
-- v1：輸入「津貼查詢」
+- [v1.0.0](https://hub.docker.com/repository/docker/mona666/linebot-subsidy/general)
+  - 輸入特定津貼
+  - 輸入「津貼查詢」
 
 ## TODO
 
