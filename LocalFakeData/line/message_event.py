@@ -21,7 +21,11 @@ def handle_message(event) -> None:
         elif messages == '個人資訊':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         else:
-            sendContent(event,listSupport,'selectSupportClass')
+            if listSupport == None:
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='沒有此津貼\n請輸入「津貼查詢」，或是完整津貼名稱。'))
+            else:
+                sendContent(event,listSupport,'selectSupportClass')
+            
 
 # 按按鈕後回傳資訊執行 
 def handle_postback(event) -> None:
