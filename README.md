@@ -7,6 +7,11 @@
 - [v1.0.0](https://hub.docker.com/repository/docker/mona666/linebot-subsidy/general)
   - 輸入特定津貼
   - 輸入「津貼查詢」
+ 
+### Getting Stated
+```
+docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" -e LINE_CHANNEL_SECRET="YOUR LINE CHANNEL SECRET" -p {本機開的port}:8001 -d mona666/linebot-subsidy:{VERSION}
+```
 
 ## TODO
 
