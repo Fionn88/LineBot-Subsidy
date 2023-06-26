@@ -4,9 +4,15 @@
 
 ## LineID：@044ejumg
 
-- [v1.0.0](https://hub.docker.com/repository/docker/mona666/linebot-subsidy/general)
+- [v1.0.X](https://hub.docker.com/repository/docker/mona666/linebot-subsidy/general)
   - 輸入特定津貼
   - 輸入「津貼查詢」
+ 
+### Latest Version: v1.0.1
+
+- 2023/06/26
+  - 版本：v1.0.1
+  - 功能：增加使用者如輸入「E政府」沒有出現的津貼，將會回覆告知
  
 ### Getting Stated
 ```
