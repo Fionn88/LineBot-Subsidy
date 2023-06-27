@@ -2,7 +2,7 @@ FROM python:3.8.6-buster
 
 WORKDIR /app
 
-ADD . /app
+ADD LocalFakeData/ /app
 
 RUN pip install -r LocalFakeData/requirements.txt
 ENV run_env=docker
