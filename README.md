@@ -15,8 +15,33 @@
   - 功能：增加使用者如輸入「E政府」沒有出現的津貼，將會回覆告知
  
 ### Getting Stated
+
+
+#### 在本機端運行
+- 在專案資料夾內建立一個檔名為 .env 檔案，內容如下
+- 將 LINE_CHANNEL_ACCESS_TOKEN,LINE_CHANNEL_SECRET 內容變更為建立 LibeBot 時取得的 Token
+
 ```
-docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" -e LINE_CHANNEL_SECRET="YOUR LINE CHANNEL SECRET" -p {本機開的port}:8001 -d mona666/linebot-subsidy:{VERSION}
+LINE_CHANNEL_SECRET = "{replace_me}"
+LINE_CHANNEL_ACCESS_TOKEN = "{replace_me}"
+# Log Level "production" is info, else is debug
+profile = "development"
+PORT = 8001
+```
+#### 在專案資料夾內執行檔案
+
+```
+python3 main.py
+```
+
+#### 使用 Docker 運行
+```
+docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
+-e LINE_CHANNEL_SECRET="YOUR LINE CHANNEL SECRET" \
+-e PORT="8001" \
+-e PROFILE="development" \
+-p {本機開的port}:8001 -d \
+ghcr.io/fionn88/linebot-subsidy:latest
 ```
 
 ## TODO
