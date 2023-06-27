@@ -1,10 +1,11 @@
 import os
+import config
 
 # Gunicorn settings
-port = int(os.getenv("PORT", 8001))
+port = int(config.PORT)
 bind = f"0.0.0.0:{port}"
 
-profile = os.getenv("profile", "production")
+port = int(config.PROFILE)
 if profile == "production":
     loglevel = "info"
 else:
