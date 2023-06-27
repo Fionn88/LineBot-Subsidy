@@ -8,3 +8,5 @@ load_dotenv()
 # LINE Bot 設定
 LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET")
 LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN")
+PORT=os.environ.get("PORT")
+PROFILE=os.environ.get("PROFILE")
