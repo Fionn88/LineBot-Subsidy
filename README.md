@@ -31,7 +31,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e PORT="8001" \
 -e PROFILE="development" \
 -p {本機開的port}:8001 -d \
-ghcr.io/fionn88/linebot-subsidy:latest
+ghcr.io/fionn88/linebot-subsidy-fastapi:latest
 ```
 
 ## TODO
