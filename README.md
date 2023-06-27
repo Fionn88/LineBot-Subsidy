@@ -14,7 +14,6 @@
 ```
 LINE_CHANNEL_SECRET = "{replace_me}"
 LINE_CHANNEL_ACCESS_TOKEN = "{replace_me}"
-# Log Level "production" is info, else is debug
 PORT = 8001
 ```
 #### 在專案資料夾內執行檔案
