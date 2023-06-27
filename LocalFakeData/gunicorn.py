@@ -5,7 +5,7 @@ import config
 port = int(config.PORT)
 bind = f"0.0.0.0:{port}"
 
-port = int(config.PROFILE)
+profile = config.PROFILE
 if profile == "production":
     loglevel = "info"
 else:
