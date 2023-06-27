@@ -3,10 +3,6 @@
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/%E6%9E%B6%E6%A7%8B%E5%9C%96.png)
 
 ## LineID：@044ejumg
-
-- [v1.0.X](https://hub.docker.com/repository/docker/mona666/linebot-subsidy-fastapi/general)
-  - 輸入特定津貼
-  - 輸入「津貼查詢」
  
 ### Getting Stated
 
