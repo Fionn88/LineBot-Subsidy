@@ -19,7 +19,11 @@ PORT = 8001
 #### 在專案資料夾內執行檔案
 
 ```
-python3 main.py
+poetry install
+```
+
+```
+poetry run python3 main.py
 ```
 
 #### 使用 Docker 運行
@@ -33,8 +37,11 @@ ghcr.io/fionn88/linebot-subsidy-fastapi:latest
 
 ## TODO
 
-- [ ] 後端讀取資料庫
-- [ ] 爬蟲程式寫入DB
+- [ ] 「津貼查詢」後端基本分類 Return LineBot
+  - [ ] (津貼分類後)後端讀取資料庫
+- [ ] 使用者直接輸入「完整津貼名稱」，後端讀取資料庫
+- [x] 爬蟲程式寫入DB
+  - [ ] 補上津貼分類 
 - [ ] 個人資訊 功能
   - [ ] 使用者輸入個人資訊，DB儲存
   - [ ] 推薦津貼給使用者
