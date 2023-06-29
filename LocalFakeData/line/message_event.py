@@ -1,10 +1,11 @@
 from linebot.models import (
-    TextMessage, TextSendMessage, TemplateSendMessage, ButtonsTemplate, ConfirmTemplate, PostbackTemplateAction, PostbackEvent,URITemplateAction
+    TextMessage, TextSendMessage, TemplateSendMessage, QuickReplyButton, ConfirmTemplate, 
+    PostbackTemplateAction, PostbackEvent,URITemplateAction,MessageAction,QuickReply
 )
 from linebot import LineBotApi
 
 from data import (
-    supportFullInfo,support,supportContent,supportURL
+    supportFullInfo,support,supportContent,supportURL,category,searchByName
 )
 
 import config
@@ -14,17 +15,25 @@ line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 # 文字傳入執行
 def handle_message(event) -> None:
     if isinstance(event.message, TextMessage):
-        messages = event.message.text      
-        listSupport = support.get(messages)
+        messages = event.message.text
+        print(messages)
         if messages == '津貼查詢':
-            sendButton(event,list(support),'selectSupport')
+            sendQuickreply(event,category,'selectCategory')
         elif messages == '個人資訊':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         else:
-            if listSupport == None:
+            print(messages)
+            result = searchByName(messages)
+            print(result)
+            if result == None:
+                print('===================')
+                print('istSupport == None')
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text='沒有此津貼\n請輸入「津貼查詢」，或是完整津貼名稱。'))
+            elif result == 'Error':
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫 Internal Error'))
             else:
-                sendContent(event,listSupport,'selectSupportClass')
+                print(result)
+                # sendContent(event,listSupport,'selectSupportClass')
             
 
 # 按按鈕後回傳資訊執行 
@@ -40,9 +49,9 @@ def handle_postback(event) -> None:
             print(e)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         else:
-            if backtype == 'selectSupport':
+            if backtype == 'selectCategory':
                 listSupport = support.get(backdata)
-                sendButton(event,listSupport,'selectSupportItem')
+                sendQuickreply(event,listSupport,'selectSupportItem')
             elif backtype == 'selectSupportItem':
                 supportFullInfoList = supportFullInfo.get(backdata)
                 if supportFullInfoList == None:
@@ -90,21 +99,20 @@ def sendConfirm(event,name,listItem,typeButton):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
 
 
-def sendButton(event,listItem, typeButton):
+def sendQuickreply(event,listItem, typeButton):
     actionsList = []
     # print('===================================')
     # print('sendButton')
     print(listItem)
     for item in listItem:
-        actionsList.append(PostbackTemplateAction(label=item,data=f'action={typeButton},data={item}'))
+        # actionsList.append(QuickReplyButton(label=item,text=item,data=f'action={typeButton},data={item}'))
+        actionsList.append(QuickReplyButton(action=PostbackTemplateAction(label=item,text=item,data=f'action={typeButton},data={item}')))
+    print(actionsList)
     try:
-        message = TemplateSendMessage(
-            alt_text = '津貼項目選擇',
-            template = ButtonsTemplate(
-                # thumbnail_image_url='https://i.imgur.com/pRdaAmS.jpg',
-                title='津貼項目',
-                text='請選擇：',
-                actions=actionsList
+        message = TextSendMessage(
+            text = '津貼項目選擇',
+            quick_reply=QuickReply(
+              items=actionsList
             )
         )
         line_bot_api.reply_message(event.reply_token,message)
