@@ -16,13 +16,14 @@ line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 def handle_message(event) -> None:
     if isinstance(event.message, TextMessage):
         messages = event.message.text
-        print(messages)
         if messages == '津貼查詢':
             sendQuickreply(event,category,'selectCategory')
         elif messages == '個人資訊':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         elif messages in category:
+            print("===============")
             print("Do SomeThing SELECT name WHERE category = ? in data.py")
+            print("===============")
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫目前未準備好分類，敬請期待新功能！'))
             # result = searchByCategory(messages)
             # if result == None:
@@ -48,10 +49,14 @@ def handle_postback(event) -> None:
             backdataSplit = event.postback.data.split(',')
             backtype = backdataSplit[0].split('=')[1]
             backdata = backdataSplit[1].split('=')[1]
-            print('backtype',backtype)
-            print('backdata',backdata)
+            print("=========================")
+            print('backtype: ',backtype)
+            print('backdata: ',backdata)
+            print("=========================")
         except Exception as e:
-            print(e)
+            print("=========================")
+            print("Exception: ",e)
+            print("=========================")
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         else:
             if backtype == 'sendConfirm':

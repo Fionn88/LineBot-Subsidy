@@ -1,4 +1,3 @@
-# `python-base` sets up all our shared environment variables
 FROM python:3.11.4-slim as python-base
 
     # python
@@ -46,7 +45,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
-COPY poetry.lock pyproject.toml ./
+COPY src/poetry.lock src/pyproject.toml ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-root

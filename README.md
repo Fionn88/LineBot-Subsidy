@@ -45,7 +45,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e DB_SCHEMA="YOUR DB USER SCHEMA" \
 -e DB_TABLE="YOUR DB USER TABLE" \
 -p {本機對外開的port}:8001 -d \
-ghcr.io/fionn88/linebot-subsidy-fastapi:v0.0.3
+ghcr.io/fionn88/linebot-subsidy-fastapi:v0.1.0
 ```
 
 ## TODO
