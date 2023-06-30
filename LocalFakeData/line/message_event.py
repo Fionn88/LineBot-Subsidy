@@ -1,11 +1,11 @@
 from linebot.models import (
     TextMessage, TextSendMessage, TemplateSendMessage, QuickReplyButton, ConfirmTemplate, 
-    PostbackTemplateAction, PostbackEvent,URITemplateAction,MessageAction,QuickReply
+    PostbackTemplateAction, PostbackEvent,URITemplateAction,QuickReply
 )
 from linebot import LineBotApi
 
 from data import (
-    supportFullInfo,support,supportContent,supportURL,category,searchByName
+    category,searchByName,searchByCategory
 )
 
 import config
@@ -21,19 +21,24 @@ def handle_message(event) -> None:
             sendQuickreply(event,category,'selectCategory')
         elif messages == '個人資訊':
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
+        elif messages in category:
+            print("Do SomeThing SELECT name WHERE category = ? in data.py")
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫目前未準備好分類，敬請期待新功能！'))
+            # result = searchByCategory(messages)
+            # if result == None:
+            #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='沒有此津貼\n請輸入「津貼查詢」，或是完整津貼名稱。'))
+            # elif result == 'Error':
+            #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：@gmail.com'))
+            # else:
+            #     sendQuickreply(event,result,'selectItem')
         else:
-            print(messages)
             result = searchByName(messages)
-            print(result)
             if result == None:
-                print('===================')
-                print('istSupport == None')
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text='沒有此津貼\n請輸入「津貼查詢」，或是完整津貼名稱。'))
             elif result == 'Error':
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫 Internal Error'))
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：@gmail.com'))
             else:
-                print(result)
-                # sendContent(event,listSupport,'selectSupportClass')
+                sendConfirm(event,result,'sendConfirm')
             
 
 # 按按鈕後回傳資訊執行 
@@ -49,46 +54,33 @@ def handle_postback(event) -> None:
             print(e)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
         else:
-            if backtype == 'selectCategory':
-                listSupport = support.get(backdata)
-                sendQuickreply(event,listSupport,'selectSupportItem')
-            elif backtype == 'selectSupportItem':
-                supportFullInfoList = supportFullInfo.get(backdata)
-                if supportFullInfoList == None:
-                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
-                else:
-                    sendConfirm(event,backdata,supportFullInfoList,'sendConfirm')
-            elif backtype == 'sendConfirm':
-                supportContentList = supportContent.get(backdata)
-                if supportContentList == None:
-                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
-                else:
-                    sendContent(event,supportContentList)
+            if backtype == 'sendConfirm':
+                result = searchByName(backdata)
+                sendContent(event,result)
+                # listSupport = support.get(backdata)
+                # sendQuickreply(event,listSupport,'selectSupportItem')
+            # elif backtype == 'selectItem':
+                # sendConfirm(event,result,'sendConfirm')
+                    
 
-def sendConfirm(event,name,listItem,typeButton):
-    titleMessage = ''
+def sendConfirm(event,result,typeButton):
     message = []
-    for index,value in enumerate(listItem):
-        if index == len(listItem) -1 :
-            titleMessage += value
-        else:
-            titleMessage += value
-            titleMessage += '\n'
-            
+    print(len(f'{result[4]}'.strip()))
     try:
-        message.append(TextSendMessage(f'以下是{name}的申辦資格'))
+        message.append(TextSendMessage(f'以下是{result[0].strip()}的申辦資格'))
+        message.append(TextSendMessage(f'{result[4]}'.strip()))
         message.append(TemplateSendMessage(
             alt_text = '津貼條件',
             template = ConfirmTemplate(
-                text=f'{titleMessage}',
+                text='請選擇：',
                 actions=[
                     PostbackTemplateAction(
                         label='補助內容',
-                        data=f'action={typeButton},data={name}'
+                        data=f'action={typeButton},data={result[0]}'
                     ),
                     URITemplateAction(
                         label='查看更多',
-                        uri=f'{supportURL.get(name)}'
+                        uri=f'{result[2]}'.strip()
                     )
                 ]
             )
@@ -101,11 +93,7 @@ def sendConfirm(event,name,listItem,typeButton):
 
 def sendQuickreply(event,listItem, typeButton):
     actionsList = []
-    # print('===================================')
-    # print('sendButton')
-    print(listItem)
     for item in listItem:
-        # actionsList.append(QuickReplyButton(label=item,text=item,data=f'action={typeButton},data={item}'))
         actionsList.append(QuickReplyButton(action=PostbackTemplateAction(label=item,text=item,data=f'action={typeButton},data={item}')))
     print(actionsList)
     try:
@@ -120,19 +108,9 @@ def sendQuickreply(event,listItem, typeButton):
         print(e)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
 
-def sendContent(event,listItem):
-    textMessage = ''
+def sendContent(event,result):
     message = []
-    for index,value in enumerate(listItem):
-        if index == len(listItem) -1 :
-            textMessage += value
-        else:
-            textMessage += value
-            textMessage += '\n'
-    # print('===================================')
-    # print('sendContent')
-    print(listItem)
-    message.append(TextSendMessage(text=textMessage))
+    message.append(TextSendMessage(text=result[3]))
     try:
         line_bot_api.reply_message(event.reply_token,message)
     except Exception as e:
