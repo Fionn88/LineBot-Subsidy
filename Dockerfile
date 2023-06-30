@@ -1,15 +1,3 @@
-# FROM python:3.8.6-buster
-
-# WORKDIR /app
-
-# ADD LocalFakeData/ /app
-
-# RUN pip install --no-cache-dir -r requirements.txt
-# ENV run_env=docker
-# CMD python3 main.py
-
-
-# `python-base` sets up all our shared environment variables
 FROM python:3.11.4-slim as python-base
 
     # python
@@ -57,7 +45,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
-COPY LocalFakeData/poetry.lock LocalFakeData/pyproject.toml ./
+COPY src/poetry.lock src/pyproject.toml ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-root
@@ -73,7 +61,7 @@ COPY --from=builder-base $POETRY_HOME $POETRY_HOME
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 # quicker install as runtime deps are already installed
-RUN poetry install --no-root
+RUN poetry install
 
 # will become mountpoint of our code
 WORKDIR /app
@@ -85,6 +73,6 @@ EXPOSE 8001
 FROM python-base as production
 ENV FASTAPI_ENV=production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
-COPY ./LocalFakeData /app/
+COPY ./src /app/
 WORKDIR /app
 CMD ["python3", "main.py"]

@@ -8,6 +8,7 @@ packages = [{include = "linebot_subsidy"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pymysql = "^1.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
