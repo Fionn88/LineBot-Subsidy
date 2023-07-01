@@ -15,7 +15,7 @@ line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 # 文字傳入執行
 def handle_message(event) -> None:
     if isinstance(event.message, TextMessage):
-        messages = event.message.text
+        messages = event.message.text.strip()
         if messages == '津貼查詢':
             sendQuickreply(event,category,'selectCategory')
         elif messages == '個人資訊':
@@ -71,8 +71,8 @@ def handle_postback(event) -> None:
 def sendConfirm(event,result,typeButton):
     message = []
     try:
-        message.append(TextSendMessage(f'以下是{result[0].strip()}的申辦資格'))
-        message.append(TextSendMessage(f'{result[4]}'.strip()))
+        message.append(TextSendMessage(f'以下是{result[0]}的申辦資格'))
+        message.append(TextSendMessage(f'{result[4]}'))
         message.append(TemplateSendMessage(
             alt_text = '津貼條件',
             template = ConfirmTemplate(
@@ -84,7 +84,7 @@ def sendConfirm(event,result,typeButton):
                     ),
                     URITemplateAction(
                         label='查看更多',
-                        uri=f'{result[2]}'.strip()
+                        uri=f'{result[2]}'
                     )
                 ]
             )
