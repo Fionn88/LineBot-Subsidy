@@ -71,8 +71,8 @@ def handle_postback(event) -> None:
 def sendConfirm(event,result,typeButton):
     message = []
     try:
-        message.append(TextSendMessage(f'以下是{result[0]}的申辦資格'))
-        message.append(TextSendMessage(f'{result[4]}'))
+        message.append(TextSendMessage(f'以下是{result[1]}的申辦資格'))
+        message.append(TextSendMessage(f'{result[6]}'))
         message.append(TemplateSendMessage(
             alt_text = '津貼條件',
             template = ConfirmTemplate(
@@ -80,11 +80,11 @@ def sendConfirm(event,result,typeButton):
                 actions=[
                     PostbackTemplateAction(
                         label='補助內容',
-                        data=f'action={typeButton},data={result[0]}'
+                        data=f'action={typeButton},data={result[1]}'
                     ),
                     URITemplateAction(
                         label='查看更多',
-                        uri=f'{result[2]}'
+                        uri=f'{result[4]}'
                     )
                 ]
             )
