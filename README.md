@@ -23,7 +23,7 @@ DB_PASSWORD = ""
 DB_SCHEMA = ""
 DB_TABLE = ""
 ```
-#### 在專案資料夾內執行檔案
+#### Use Host Run
 
 ```
 poetry install
@@ -33,19 +33,20 @@ poetry install
 poetry run python3 main.py
 ```
 
-#### 使用 Docker 運行
+#### Use Docker Run
 ```
 docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e LINE_CHANNEL_SECRET="YOUR LINE CHANNEL SECRET" \
--e PORT="8001" \
+-e PORT="{Container Port}" \
 -e DB_HOST="YOUR DB HOST" \
 -e DB_PORT="YOUR DB PORT" \
 -e DB_USER="YOUR DB USER" \
 -e DB_PASSWORD="YOUR DB USER PASSWORD" \
 -e DB_SCHEMA="YOUR DB USER SCHEMA" \
 -e DB_TABLE="YOUR DB USER TABLE" \
--p {本機對外開的port}:8001 -d \
-ghcr.io/fionn88/linebot-subsidy-fastapi:v0.1.0
+-p {Host Port}:{Container Port} \ 
+--network={same as mysql container network and you can connect mysql using the mysql container name => env: DB_HOST} --name fastapi-dev \
+-d ghcr.io/fionn88/linebot-subsidy-fastapi:v0.1.0
 ```
 
 ## TODO
