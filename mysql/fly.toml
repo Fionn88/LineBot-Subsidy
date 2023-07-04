@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for linebot-subsidy-mysql on 2023-07-04T21:25:20+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "linebot-subsidy-mysql"
+primary_region = "nrt"
+
+[build]
+  image = "mysql:8.0.32"
+
+[env]
+  MYSQL_DATABASE = "fastapi"
+  MYSQL_USER = "guest"
+
+[processes]
+  app = "--datadir /data/mysql --default-authentication-plugin mysql_native_password --performance-schema=OFF --innodb-buffer-pool-size 64M"
+
+[[mounts]]
+  source = "mysqldata"
+  destination = "/data"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 3306
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 3306
