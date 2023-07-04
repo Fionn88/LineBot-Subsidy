@@ -3,11 +3,11 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "linebot-subsidy-fastapi"
+app = ${{ secrets.APP_NAME }}
 primary_region = "nrt"
 
 [build]
-  image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:${{ steps.meta.outputs.tags }}'
+  image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:latest'
 
 [env]
   DB_HOST = ${{ secrets.DB_HOST }}
@@ -23,7 +23,7 @@ primary_region = "nrt"
 [http_service]
   internal_port = ${{ secrets.PORT }}
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = ${{ secrets.AUTO_STOP_MACHINES }}
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]

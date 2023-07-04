@@ -15,6 +15,13 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Exit if not on dev branch
+        if: endsWith(github.ref, 'dev') == false
+        run: exit -1
   push_to_registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
