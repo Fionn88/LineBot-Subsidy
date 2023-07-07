@@ -73,6 +73,7 @@ jobs:
           sed -i -e 's/$LINE_CHANNEL_SECRET/'${{ secrets.LINE_CHANNEL_SECRET }}'/g' fly.toml
           sed -i -e 's/$PORT/'${{ secrets.PORT }}'/g' fly.toml
           sed -i -e 's/$AUTO_STOP_MACHINES/'${{ secrets.AUTO_STOP_MACHINES }}'/g' fly.toml
+          cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
         env:
