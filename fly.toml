@@ -7,7 +7,7 @@ app = replace_APP_HOST
 primary_region = "nrt"
 
 [build]
-  image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.1'
+  image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:latest'
 
 [env]
   DB_HOST = replace_DB_HOST
