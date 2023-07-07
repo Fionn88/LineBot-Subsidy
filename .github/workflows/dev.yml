@@ -60,6 +60,8 @@ jobs:
     steps:
       - name: Config file access
         run: |
+          echo ${{ github.workspace }}
+          ls -al
           sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' fly.toml
           sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' fly.toml
           sed -i -e 's/$DB_PASSWORD/'${{ secrets.DB_PASSWORD }}'/g' fly.toml
