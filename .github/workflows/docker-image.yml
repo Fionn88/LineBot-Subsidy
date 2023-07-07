@@ -16,7 +16,7 @@ on:
 
 jobs:
   push_to_registries:
-    if: contains('dev', github.ref)
+    if: github.ref == 'dev'
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
     permissions:
