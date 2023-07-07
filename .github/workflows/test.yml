@@ -20,8 +20,19 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v3
       - name: Config file access    
+        env:
+          APP_HOST: ${{ vars.APP_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_SCHEMA: ${{ secrets.DB_SCHEMA }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_TABLE: ${{ secrets.DB_TABLE }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          AUTO_STOP_MACHINES: ${{ secrets.AUTO_STOP_MACHINES }}
+          PORT: ${{ secrets.PORT }}
         run: |
-          sed -e 's/$APP_HOST/${{ vars.APP_HOST }}/g' -e 's/$DB_PORT/${{ secrets.DB_PORT }}/g' -e 's/$DB_USER/${{ secrets.DB_USER }}/g' -e 's/$DB_PASSWORD/${{ secrets.DB_PASSWORD }}/g' -e 's/$DB_HOST/${{ secrets.DB_HOST }}/g' -e 's/$DB_SCHEMA/${{ secrets.DB_SCHEMA }}/g' -e 's/$DB_TABLE/${{ secrets.DB_TABLE }}/g' -e 's/$LINE_CHANNEL_ACCESS_TOKEN/${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}/g' -e 's/$LINE_CHANNEL_SECRET/${{ secrets.LINE_CHANNEL_SECRET }}/g' -e 's/$PORT/${{ secrets.PORT }}/g' -e 's/$AUTO_STOP_MACHINES/${{ secrets.AUTO_STOP_MACHINES }}/g' fly.toml
+          sed -e 's/replace_APP_HOST/$APP_HOST/g' -e 's/replace_DB_PORT/$DB_PORT/g' -e 's/replace_DB_USER/$DB_USER/g' -e 's/replace_DB_PASSWORD/$DB_PASSWORD/g' -e 's/replace_DB_HOST/$DB_HOST/g' -e 's/replace_DB_SCHEMA/$DB_SCHEMA/g' -e 's/replace_DB_TABLE/$DB_TABLE/g' -e 's/replace_LINE_CHANNEL_ACCESS_TOKEN/$LINE_CHANNEL_ACCESS_TOKEN/g' -e 's/replace_LINE_CHANNEL_SECRET/LINE_CHANNEL_SECRET/g' -e 's/replace_PORT/$PORT/g' -e 's/replace_AUTO_STOP_MACHINES/$AUTO_STOP_MACHINES/g' fly.toml
           cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
