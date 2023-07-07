@@ -3,22 +3,22 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = $APP_HOST
+app = "$APP_HOST"
 primary_region = "nrt"
 
 [build]
   image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:latest'
 
 [env]
-  DB_HOST = $DB_HOST
-  DB_PASSWORD = $DB_PASSWORD
-  DB_PORT = $DB_PORT
-  DB_SCHEMA = $DB_SCHEMA
-  DB_TABLE = $DB_TABLE
-  DB_USER = $DB_USER
-  LINE_CHANNEL_ACCESS_TOKEN = $LINE_CHANNEL_ACCESS_TOKEN
-  LINE_CHANNEL_SECRET = $LINE_CHANNEL_SECRET
-  PORT = $PORT
+  DB_HOST = "$DB_HOST"
+  DB_PASSWORD = "$DB_PASSWORD"
+  DB_PORT = "$DB_PORT"
+  DB_SCHEMA = "$DB_SCHEMA"
+  DB_TABLE = "$DB_TABLE"
+  DB_USER = "$DB_USER"
+  LINE_CHANNEL_ACCESS_TOKEN = "$LINE_CHANNEL_ACCESS_TOKEN"
+  LINE_CHANNEL_SECRET = "$LINE_CHANNEL_SECRET"
+  PORT = "$PORT"
 
 [http_service]
   internal_port = $PORT
