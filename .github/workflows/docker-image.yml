@@ -16,7 +16,7 @@ on:
 
 jobs:
   push_to_registries:
-    if: github.ref == 'dev'
+    if: contains(fromJson('["refs/heads/dev"]'), github.ref)
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
     permissions:
@@ -57,7 +57,7 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
-    if: github.ref == 'dev' || github.ref == 'main'
+    if: contains(fromJson('["refs/heads/dev", "refs/heads/main"]'), github.ref)
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
