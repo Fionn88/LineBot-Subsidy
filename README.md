@@ -46,7 +46,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e DB_TABLE="YOUR DB USER TABLE" \
 -p {Host Port}:{Container Port} \ 
 --network={same as mysql container network and you can connect mysql using the mysql container name => env: DB_HOST} --name fastapi-dev \
--d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.1
+-d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.2
 ```
 
 ## TODO
@@ -60,3 +60,5 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
   - [ ] 使用者輸入個人資訊，DB儲存
   - [ ] 推薦津貼給使用者
 - [ ] 可使用模糊查詢
+- [ ] LineBot前端選項篩選與回覆
+- [ ] 優化回覆津貼條件和內容
