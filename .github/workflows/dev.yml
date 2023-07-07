@@ -62,16 +62,17 @@ jobs:
         run: |
           echo ${{ github.workspace }}
           ls -al
-          sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' fly.toml
-          sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' fly.toml
-          sed -i -e 's/$DB_PASSWORD/'${{ secrets.DB_PASSWORD }}'/g' fly.toml
-          sed -i -e 's/$DB_HOST/'${{ secrets.DB_HOST }}'/g' fly.toml
-          sed -i -e 's/$DB_SCHEMA/'${{ secrets.DB_SCHEMA }}'/g' fly.toml
-          sed -i -e 's/$DB_TABLE/'${{ secrets.DB_TABLE }}'/g' fly.toml
-          sed -i -e 's/$LINE_CHANNEL_ACCESS_TOKEN/'${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}'/g' fly.toml
-          sed -i -e 's/$LINE_CHANNEL_SECRET/'${{ secrets.LINE_CHANNEL_SECRET }}'/g' fly.toml
-          sed -i -e 's/$PORT/'${{ secrets.PORT }}'/g' fly.toml
-          sed -i -e 's/$AUTO_STOP_MACHINES/'${{ secrets.AUTO_STOP_MACHINES }}'/g' fly.toml
+          echo ${{ steps.repo-name.outputs.repository-name }}
+          sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$DB_PASSWORD/'${{ secrets.DB_PASSWORD }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$DB_HOST/'${{ secrets.DB_HOST }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$DB_SCHEMA/'${{ secrets.DB_SCHEMA }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$DB_TABLE/'${{ secrets.DB_TABLE }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$LINE_CHANNEL_ACCESS_TOKEN/'${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$LINE_CHANNEL_SECRET/'${{ secrets.LINE_CHANNEL_SECRET }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$PORT/'${{ secrets.PORT }}'/g' LineBot-Subsidy/fly.toml
+          sed -i -e 's/$AUTO_STOP_MACHINES/'${{ secrets.AUTO_STOP_MACHINES }}'/g' LineBot-Subsidy/fly.toml
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
