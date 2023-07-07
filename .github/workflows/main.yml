@@ -5,13 +5,6 @@ on:
       - main
     types: [closed]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Exit if not on main branch
-        if: endsWith(github.ref, 'main') == false
-        run: exit -1
   deploy:
     name: deploy fly
     runs-on: ubuntu-latest
