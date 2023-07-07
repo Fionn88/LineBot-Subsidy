@@ -32,7 +32,7 @@ jobs:
           AUTO_STOP_MACHINES: ${{ secrets.AUTO_STOP_MACHINES }}
           PORT: ${{ secrets.PORT }}
         run: |
-          sed -e 's/replace_APP_HOST/$APP_HOST/g' -e 's/replace_DB_PORT/$DB_PORT/g' -e 's/replace_DB_USER/$DB_USER/g' -e 's/replace_DB_PASSWORD/$DB_PASSWORD/g' -e 's/replace_DB_HOST/$DB_HOST/g' -e 's/replace_DB_SCHEMA/$DB_SCHEMA/g' -e 's/replace_DB_TABLE/$DB_TABLE/g' -e 's/replace_LINE_CHANNEL_ACCESS_TOKEN/$LINE_CHANNEL_ACCESS_TOKEN/g' -e 's/replace_LINE_CHANNEL_SECRET/LINE_CHANNEL_SECRET/g' -e 's/replace_PORT/$PORT/g' -e 's/replace_AUTO_STOP_MACHINES/$AUTO_STOP_MACHINES/g' fly.toml
+          sed -e "s/replace_APP_HOST/$APP_HOST/g" -e "s/replace_DB_PORT/$DB_PORT/g" -e "s/replace_DB_USER/$DB_USER/g" -e "s/replace_DB_PASSWORD/$DB_PASSWORD/g" -e "s/replace_DB_HOST/$DB_HOST/g" -e "s/replace_DB_SCHEMA/$DB_SCHEMA/g" -e "s/replace_DB_TABLE/$DB_TABLE/g" -e "s/replace_LINE_CHANNEL_ACCESS_TOKEN/$LINE_CHANNEL_ACCESS_TOKEN/g" -e "s/replace_LINE_CHANNEL_SECRET/LINE_CHANNEL_SECRET/g" -e "s/replace_PORT/$PORT/g" -e "s/replace_AUTO_STOP_MACHINES/$AUTO_STOP_MACHINES/g" fly.toml
           cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
