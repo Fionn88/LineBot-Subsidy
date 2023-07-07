@@ -75,6 +75,6 @@ jobs:
           sed -i -e 's/$AUTO_STOP_MACHINES/'${{ secrets.AUTO_STOP_MACHINES }}'/g' fly.toml
           cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
+      - run: flyctl deploy --remote-only -a ${{ secrets.APP_HOST }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
