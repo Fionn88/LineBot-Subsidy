@@ -10,9 +10,10 @@
 name: Publish Docker image
 
 on:
-  push:
+  pull_request:
     branches:
       - dev
+    types: [closed]
 jobs:
   deploy:
     name: deploy fly
