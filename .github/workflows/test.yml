@@ -15,10 +15,11 @@ jobs:
   deploy:
     name: deploy fly
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
-      - name: Config file access
+      - name: Config file access    
         run: |
           echo ${{ vars.APP_HOST }}
           sed -i -e 's/$APP_HOST/'${{ vars.APP_HOST }}'/g' fly.toml
