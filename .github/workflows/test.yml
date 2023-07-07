@@ -21,8 +21,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Config file access    
         run: |
-          echo ${{ vars.APP_HOST }}
-          sed -i -e 's/$APP_HOST/'${{ vars.APP_HOST }}'/g' fly.toml
           sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' fly.toml
           sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' fly.toml
           sed -i -e 's/$DB_PASSWORD/'${{ secrets.DB_PASSWORD }}'/g' fly.toml
