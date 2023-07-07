@@ -62,6 +62,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Config file access
         run: |
+          echo $APP_HOST
           sed -i -e 's/$APP_HOST/'${{ secrets.APP_HOST }}'/g' fly.toml
           sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' fly.toml
           sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' fly.toml
@@ -74,7 +75,9 @@ jobs:
           sed -i -e 's/$PORT/'${{ secrets.PORT }}'/g' fly.toml
           sed -i -e 's/$AUTO_STOP_MACHINES/'${{ secrets.AUTO_STOP_MACHINES }}'/g' fly.toml
           cat fly.toml
+        env:
+          APP_HOST: ${{ secrets.APP_HOST }}  
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only -a ${{ secrets.APP_HOST }}
+      - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
