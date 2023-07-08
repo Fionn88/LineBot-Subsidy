@@ -1,29 +1,29 @@
-# fly.toml app configuration file generated for linebot-subsidy-fastapi-prod on 2023-07-08T04:10:25+08:00
+# fly.toml app configuration file generated for linebot-subsidy-fastapi on 2023-07-04T13:21:21+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "linebot-subsidy-fastapi-prod"
+app = ${{ secrets.APP_NAME }}
 primary_region = "nrt"
 
 [build]
-  image = "ghcr.io/fionn88/linebot-subsidy-fastapi:latest"
+  image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:latest'
 
 [env]
-  DB_HOST = "localhost"
-  DB_PASSWORD = "theflymysql"
-  DB_PORT = "3306"
-  DB_SCHEMA = "Allowance_Master"
-  DB_TABLE = "AllowanceDetails"
-  DB_USER = "guest"
-  LINE_CHANNEL_ACCESS_TOKEN = "0wBRFXP0oNcwOfxRjhVuOKY8VQvN7vpxM8MkQ2ghSMYj0eU6ZX/PtP56+plxwultEgH//ghIf8k/ZlKQLIXIoh6D3ZNo8lSiSIS7ZBDaQpjMPir3hdqxNcjqMrBE5ZaUYG0WIhLKdBXcSEgzfWd7bwdB04t89/1O/w1cDnyilFU="
-  LINE_CHANNEL_SECRET = "4dc4dbdf9735525dd8b9aef5f86a415d"
-  PORT = "8001"
+  DB_HOST = ${{ secrets.DB_HOST }}
+  DB_PASSWORD = ${{ secrets.DB_PASSWORD }}
+  DB_PORT = ${{ secrets.DB_PORT }}
+  DB_SCHEMA = ${{ secrets.DB_SCHEMA }}
+  DB_TABLE = ${{ secrets.DB_TABLE }}
+  DB_USER = ${{ secrets.DB_USER }}
+  LINE_CHANNEL_ACCESS_TOKEN = ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+  LINE_CHANNEL_SECRET = ${{ secrets.LINE_CHANNEL_SECRET }}
+  PORT = ${{ secrets.PORT }}
 
 [http_service]
-  internal_port = 8001
+  internal_port = ${{ secrets.PORT }}
   force_https = true
-  auto_stop_machines = false
+  auto_stop_machines = ${{ secrets.AUTO_STOP_MACHINES }}
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
