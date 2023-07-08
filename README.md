@@ -51,14 +51,19 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 
 ## TODO
 
+### 功能相關
 - [x] 「津貼查詢」後端基本分類 Return LineBot
   - [X] (津貼分類後)後端讀取資料庫
 - [x] 使用者直接輸入「完整津貼名稱」，後端讀取資料庫
 - [x] 爬蟲程式寫入DB
-  - [X] 補上津貼分類 
+  - [X] 補上津貼分類
+- [ ] LineBot前端選項篩選與回覆
+- [ ] 優化回覆津貼條件和內容
+- [ ] 可使用模糊查詢
 - [ ] 個人資訊 功能
   - [ ] 使用者輸入個人資訊，DB儲存
   - [ ] 推薦津貼給使用者
-- [ ] 可使用模糊查詢
-- [ ] LineBot前端選項篩選與回覆
-- [ ] 優化回覆津貼條件和內容
+
+### 流程相關
+- [X] 增加CI/CD Build Image
+- [X] 佈署至Fly.io
