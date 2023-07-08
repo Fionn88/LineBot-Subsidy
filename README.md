@@ -6,7 +6,6 @@
  
 ### Getting Stated
 
-
 #### 在本機端運行
 - 在專案資料夾內建立一個檔名為 .env 檔案，內容如下
 - 將 LINE_CHANNEL_ACCESS_TOKEN,LINE_CHANNEL_SECRET 內容變更為建立 LibeBot 時取得的 Token
