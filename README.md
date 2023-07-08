@@ -64,6 +64,8 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
   - [ ] 使用者輸入個人資訊，DB儲存
   - [ ] 推薦津貼給使用者
 
+
 ### 流程相關
 - [X] 增加CI/CD Build Image
 - [X] 佈署至Fly.io
+
