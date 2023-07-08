@@ -23,7 +23,7 @@ primary_region = "nrt"
 [http_service]
   internal_port = replace_PORT
   force_https = true
-  auto_stop_machines = replace_AUTO_STOP_MACHINES
+  auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = replace_MIN_MACHINES_RUNNING
   processes = ["app"]
