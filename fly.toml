@@ -3,27 +3,27 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = ${{ secrets.APP_NAME }}
+app = replace_APP_HOST
 primary_region = "nrt"
 
 [build]
   image = 'ghcr.io/fionn88/linebot-subsidy-fastapi:latest'
 
 [env]
-  DB_HOST = ${{ secrets.DB_HOST }}
-  DB_PASSWORD = ${{ secrets.DB_PASSWORD }}
-  DB_PORT = ${{ secrets.DB_PORT }}
-  DB_SCHEMA = ${{ secrets.DB_SCHEMA }}
-  DB_TABLE = ${{ secrets.DB_TABLE }}
-  DB_USER = ${{ secrets.DB_USER }}
-  LINE_CHANNEL_ACCESS_TOKEN = ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-  LINE_CHANNEL_SECRET = ${{ secrets.LINE_CHANNEL_SECRET }}
-  PORT = ${{ secrets.PORT }}
+  DB_HOST = replace_DB_HOST
+  DB_PASSWORD = replace_DB_PASSWORD
+  DB_PORT = replace_DB_PORT
+  DB_SCHEMA = replace_DB_SCHEMA
+  DB_TABLE = replace_DB_TABLE
+  DB_USER = replace_DB_USER
+  LINE_CHANNEL_ACCESS_TOKEN = replace_LINE_CHANNEL_ACCESS_TOKEN
+  LINE_CHANNEL_SECRET = replace_LINE_CHANNEL_SECRET
+  PORT = replace_PORT
 
 [http_service]
-  internal_port = ${{ secrets.PORT }}
+  internal_port = replace_PORT
   force_https = true
-  auto_stop_machines = ${{ secrets.AUTO_STOP_MACHINES }}
+  auto_stop_machines = replace_AUTO_STOP_MACHINES
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
