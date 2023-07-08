@@ -11,14 +11,13 @@ name: Publish Docker image And Dev Deploy
 
 on:
   push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+    branches:
+      - dev
 
 jobs:
   push_to_registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
-    environment: dev
     permissions:
       packages: write
       contents: read
