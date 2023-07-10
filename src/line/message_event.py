@@ -1,16 +1,12 @@
 from linebot.models import (
-    TextMessage, TextSendMessage, TemplateSendMessage, QuickReplyButton, ConfirmTemplate, 
-    PostbackTemplateAction, PostbackEvent,URITemplateAction,QuickReply
+    TextMessage, TextSendMessage, PostbackEvent
 )
-from linebot import LineBotApi
-
+from urls import line_bot_api
+from message_handler import *
 from data import (
     category,location_dict,category_dict,searchByCode,searchByCategoryAndLocation
 )
 
-import config
-
-line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None
 
@@ -33,6 +29,10 @@ def handle_message(event) -> None:
 
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
 
+        elif messages == '問題回報':
+
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
+
         elif messages in category:
 
             user_click_category = messages
@@ -51,7 +51,7 @@ def handle_message(event) -> None:
             else:
                 result = searchByCategoryAndLocation(category_dict.get(user_click_category),user_click_location)
                 if result:
-                    sendList(event,result)
+                    sendList(event,user_click_category,user_click_location,result)
                 else:
                     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前沒有您選取的條件津貼，如想詳細查詢請到E政府'))
                 
@@ -97,88 +97,3 @@ def handle_postback(event) -> None:
             if backtype == 'sendConfirm':
                 result = searchByCode(backdata)
                 sendContent(event,result)
-                    
-
-def sendConfirm(event,result,typeButton):
-    message = []
-    try:
-        message.append(TextSendMessage(f'以下是{result[1]}的申辦資格'))
-        message.append(TextSendMessage(f'{result[6]}'))
-        message.append(TemplateSendMessage(
-            alt_text = '津貼條件',
-            template = ConfirmTemplate(
-                text='請選擇：',
-                actions=[
-                    PostbackTemplateAction(
-                        label='補助內容',
-                        data=f'action={typeButton},data={result[0]}'
-                    ),
-                    URITemplateAction(
-                        label='查看更多',
-                        uri=f'{result[4]}'
-                    )
-                ]
-            )
-        ))
-        line_bot_api.reply_message(event.reply_token,message)
-    except Exception as e:
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-
-
-def sendQuickreply(event, listData ,typeButton):
-    actionsList = []
-    if typeButton == "selectCategory":
-         text = '津貼類別選擇'
-         for item in listData:
-             actionsList.append(QuickReplyButton(action=PostbackTemplateAction(label=item,text=item,data=f'action={typeButton},data={item}')))
-    elif typeButton == "selectLocation" or typeButton == "selectBigLocation":
-        text = '津貼承辦單位地點選擇'
-        for item in listData:
-             actionsList.append(QuickReplyButton(action=PostbackTemplateAction(label=item,text=item,data=f'action={typeButton},data={item}')))
-    try:
-        message = TextSendMessage(
-            text = text,
-            quick_reply=QuickReply(
-              items=actionsList
-            )
-        )
-        line_bot_api.reply_message(event.reply_token,message)
-    except Exception as e:
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-
-def sendContent(event,result):
-    message = []
-    print(result)
-    message.append(TextSendMessage(text=result[5]))
-    try:
-        line_bot_api.reply_message(event.reply_token,message)
-    except Exception as e:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
-
-def sendList(event,result):
-    message = []
-    text = ""
-    message.append(TextSendMessage('以下是您欲查詢的津貼補助，請輸入津貼ID查詢津貼'))
-    for index,list in enumerate(result):
-        if index == len(result) - 1:
-            text += list[0]+" "+list[1]
-        else:
-            text += list[0]+" "+list[1]+"\n"
-    message.append(TextSendMessage(text=text))
-        
-    try:
-        line_bot_api.reply_message(event.reply_token,message)
-    except Exception as e:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
