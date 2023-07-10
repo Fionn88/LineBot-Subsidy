@@ -15,7 +15,7 @@
 ```
 LINE_CHANNEL_SECRET = "{replace_me}"
 LINE_CHANNEL_ACCESS_TOKEN = "{replace_me}"
-PORT = 8001
+PORT = "8001"
 DB_HOST = ""
 DB_PORT = ""
 DB_USER = ""

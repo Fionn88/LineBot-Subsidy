@@ -107,8 +107,7 @@ def sendConfirm(event,result,typeButton):
     message = []
     try:
         message.append(TextSendMessage(f'以下是{result[1]}的申辦資格'))
-
-        if re.match('.*尚未填寫申辦說明|.*無', result[6]):
+        if re.match('.*尚未填寫申辦說明', result[6]) or len(result[6]) == 1:
             message.append(TextSendMessage('目前相關單位還沒填寫詳情，請直接點選查看更多至網頁查看更詳細資訊。'))
         else:
             message.append(TextSendMessage(f'{result[6]}'))
