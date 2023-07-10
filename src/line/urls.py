@@ -41,8 +41,3 @@ def handle_postback(event) -> None:
         event (LINE Event Object): Refer to https://developers.line.biz/en/reference/messaging-api/#message-event
     """
     message_event.handle_postback(event=event)
-
-
-
-
-
