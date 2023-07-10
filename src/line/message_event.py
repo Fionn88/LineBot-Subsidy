@@ -164,7 +164,7 @@ def sendQuickreply(event, listData ,typeButton):
 def sendContent(event,result):
     message = []
     print(result)
-    if re.match('.*尚未填寫申辦說明|.*無', result[5]):
+    if re.match('.*尚未填寫申辦說明', result[5]) or len(result[5]) == 1:
         message.append(TextSendMessage(text='目前相關單位還沒填寫詳情，請直接點選查看更多至網頁查看更詳細資訊。'))
     else:
         message.append(TextSendMessage(text=result[5]))
