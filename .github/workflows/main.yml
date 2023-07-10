@@ -35,6 +35,7 @@ jobs:
           sed -i -e "s|replace_LINE_CHANNEL_ACCESS_TOKEN|\"$LINE_CHANNEL_ACCESS_TOKEN\"|g" fly.toml
           sed -i -e "s|replace_LINE_CHANNEL_SECRET|\"$LINE_CHANNEL_SECRET\"|g" fly.toml
           sed -i -e "s|replace_PORT|$PORT|g" fly.toml
+          sed -i -e "s|replace_AUTO_STOP_MACHINES|$AUTO_STOP_MACHINES|g" fly.toml
           sed -i -e "s|replace_MIN_MACHINES_RUNNING|$MIN_MACHINES_RUNNING|g" fly.toml
           cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
