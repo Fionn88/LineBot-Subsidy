@@ -4,12 +4,9 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import (
     MessageEvent, TextMessage, PostbackEvent
 )
-from linebot import (
-    LineBotApi, WebhookHandler
-)
+from linebot import WebhookHandler
 from . import message_event
 
-line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
 
 line_app = APIRouter()

@@ -2,15 +2,14 @@ from linebot.models import (
     TextSendMessage, TemplateSendMessage, QuickReplyButton, ConfirmTemplate, 
     PostbackTemplateAction,URITemplateAction,QuickReply,MessageAction,TextMessage,PostbackEvent
 )
+from linebot import LineBotApi
 import re
-from linebot import (
-    LineBotApi
-)
-import config
 
+import config
 from data import (
     category,location_dict,category_dict,searchByCode,searchByCategoryAndLocation
 )
+
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None
@@ -71,7 +70,7 @@ def handle_message(event) -> None:
                 if result == None:
                     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='沒有此津貼ID'))
                 elif result == 'Error':
-                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：@gmail.com'))
+                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：'+config.TEAM_EMAIL))
                 else:
                     sendConfirm(event,result,'sendConfirm')
             
@@ -115,7 +114,7 @@ def sendConfirm(event,result,typeButton):
         message.append(TemplateSendMessage(
             alt_text = '津貼條件',
             template = ConfirmTemplate(
-                text='您還可以看看補助內容或查看更多',
+                text='您還可以看看：',
                 actions=[
                     PostbackTemplateAction(
                         label='補助內容',
@@ -140,9 +139,9 @@ def sendQuickreply(event, listData ,typeButton):
     actionsList = []
     if typeButton == "selectCategory":
          text = '請問您今天想要查詢哪個類別的津貼呢?'
-    elif typeButton == "selectLocation" or typeButton == "selectBigLocation":
-        text = '請問您的戶籍地是台灣哪區呢?'
     elif typeButton == "selectLocation":
+        text = '請問您的戶籍地是台灣哪區呢?'
+    elif typeButton == "selectBigLocation":
         text = '請問您的戶籍地是哪個縣市呢?'
     for item in listData:
         actionsList.append(QuickReplyButton(action=MessageAction(label=item,text=item,data=f'action={typeButton},data={item}')))
