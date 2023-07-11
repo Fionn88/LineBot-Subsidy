@@ -24,7 +24,7 @@ jobs:
           LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
           PORT: ${{ secrets.PORT }}
           MIN_MACHINES_RUNNING: ${{ vars.MIN_MACHINES_RUNNING }}
-          TEAM_EAMIL: ${{ vars.TEAM_EAMIL }}
+          TEAM_EAMIL: ${{ vars.TEAM_EMAIL }}
         run: |
           sed -i -e "s|replace_APP_HOST|\"$APP_HOST\"|g" fly.toml
           sed -i -e "s|replace_DB_PORT|\"$DB_PORT\"|g" fly.toml
@@ -38,7 +38,7 @@ jobs:
           sed -i -e "s|replace_PORT|$PORT|g" fly.toml
           sed -i -e "s|replace_AUTO_STOP_MACHINES|$AUTO_STOP_MACHINES|g" fly.toml
           sed -i -e "s|replace_MIN_MACHINES_RUNNING|$MIN_MACHINES_RUNNING|g" fly.toml
-          sed -i -e "s|replace_MIN_MACHINES_RUNNING|$TEAM_EAMIL|g" fly.toml
+          sed -i -e "s|replace_TEAM_EMAIL|$TEAM_EMAIL|g" fly.toml
           cat fly.toml
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: |
