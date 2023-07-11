@@ -16,12 +16,13 @@
 LINE_CHANNEL_SECRET = "{replace_me}"
 LINE_CHANNEL_ACCESS_TOKEN = "{replace_me}"
 PORT = "8001"
-DB_HOST = ""
-DB_PORT = ""
-DB_USER = ""
-DB_PASSWORD = ""
-DB_SCHEMA = ""
-DB_TABLE = ""
+DB_HOST = "example_host"
+DB_PORT = "3306"
+DB_USER = "example_user"
+DB_PASSWORD = "example_password"
+DB_SCHEMA = "example_schema"
+DB_TABLE = "example_table"
+TEAM_EMAIL = "example@gmail.com"
 ```
 #### Use Host Run
 
