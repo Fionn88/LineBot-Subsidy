@@ -18,7 +18,7 @@
 ### Getting Stated
 
 
-- [X] 津貼類別地點選單
+- [X] 津貼類別地點搜尋系統選單
 
 
 #### 在本機端運行
@@ -71,13 +71,23 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
 | VARCHAR(20) | VARCHAR(90) | TEXT | TEXT | TEXT | TEXT | TEXT |
 
+## 🏛️ Authors
+
+- [Vicky](https://github.com/POPOKE)
+- [Sunny](https://github.com/s-l-coder)
+- [Claire](https://github.com/chiahsuannn)
+- [Taylor](https://github.com/taylorwu541)
+
+## 🏛️ Team work
+
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/team_member.png)
 
 ## 🏛️ TODO
 
 ### 功能相關
 - [x] 「津貼查詢」後端基本分類 Return LineBot
   - [X] (津貼分類後)後端讀取資料庫
-- [x] 使用者直接輸入「完整津貼名稱」，後端讀取資料庫
+- [x] 使用者直接輸入津貼ID，後端讀取資料庫
 - [x] 爬蟲程式寫入DB
   - [X] 補上津貼分類
 - [ ] LineBot前端選項篩選與回覆
@@ -86,6 +96,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 - [ ] 個人資訊 功能
   - [ ] 使用者輸入個人資訊，DB儲存
   - [ ] 推薦津貼給使用者
+- [ ] 問題回報功能，直接發信給Team Email
 
 
 ### 流程相關
