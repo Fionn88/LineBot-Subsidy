@@ -1,10 +1,25 @@
-# LineBot for subsidy search
+# 🏛️ LINEBot_For_Subsidy_Search 🏛️
 
-![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/architecture.png)
+- The interface is in Mandarin.目前只支援繁體中文
 
-## LineID：@044ejumg
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/architecture_show.png)
+
+## 🏛️ LineID：@044ejumg
+
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/invite_code.png)
+
+## 🏛️ App demo and features
+
+- General features:
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/product_intro.png)
+
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/detail_feature.png)
  
 ### Getting Stated
+
+
+- [X] 津貼類別地點選單
+
 
 #### 在本機端運行
 - 在專案資料夾內建立一個檔名為 .env 檔案，內容如下
@@ -44,12 +59,20 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e DB_PASSWORD="YOUR DB USER PASSWORD" \
 -e DB_SCHEMA="YOUR DB USER SCHEMA" \
 -e DB_TABLE="YOUR DB USER TABLE" \
+-e TEAM_EMAIL="YOUR EMAIL" \
 -p {Host Port}:{Container Port} \ 
 --network={same as mysql container network and you can connect mysql using the mysql container name => env: DB_HOST} --name fastapi-dev \
 -d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.2
 ```
 
-## TODO
+#### Our Data Structure
+
+| serial_no   | name |  category ｜ organization_name | url | content | condition_list |
+| ------------- | ------------- |  ------------- | ------------- | ------------- | ------------- | ------------- |
+| VARCHAR(20)  | VARCHAR(90)  |  TEXT |  TEXT |  TEXT |  TEXT |  TEXT  |
+
+
+## 🏛️ TODO
 
 ### 功能相關
 - [x] 「津貼查詢」後端基本分類 Return LineBot
