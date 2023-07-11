@@ -68,7 +68,9 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 #### Our Data Structure
 
 | serial_no   | name |  category ｜ organization_name | url | content | condition_list |
+
 | ------------- | ------------- |  ------------- | ------------- | ------------- | ------------- | ------------- |
+
 | VARCHAR(20)  | VARCHAR(90)  |  TEXT |  TEXT |  TEXT |  TEXT |  TEXT  |
 
 
