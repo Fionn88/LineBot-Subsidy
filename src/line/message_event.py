@@ -2,15 +2,14 @@ from linebot.models import (
     TextSendMessage, TemplateSendMessage, QuickReplyButton, ConfirmTemplate, 
     PostbackTemplateAction,URITemplateAction,QuickReply,MessageAction,TextMessage,PostbackEvent
 )
+from linebot import LineBotApi
 import re
-from linebot import (
-    LineBotApi
-)
-import config
 
+import config
 from data import (
     category,location_dict,category_dict,searchByCode,searchByCategoryAndLocation
 )
+
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None

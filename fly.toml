@@ -19,6 +19,7 @@ primary_region = "nrt"
   LINE_CHANNEL_ACCESS_TOKEN = replace_LINE_CHANNEL_ACCESS_TOKEN
   LINE_CHANNEL_SECRET = replace_LINE_CHANNEL_SECRET
   PORT = replace_PORT
+  TEAM_EMAIL = replace_TEAM_EMAIL
 
 [http_service]
   internal_port = replace_PORT
