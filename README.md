@@ -82,6 +82,8 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/team_member.png)
 
+Reach as at: yubahotpot2023@gmail.com
+
 ## 🏛️ TODO
 
 ### 功能相關
