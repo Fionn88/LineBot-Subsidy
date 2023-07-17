@@ -94,7 +94,7 @@ Reach as at: yubahotpot2023@gmail.com
 
 ## 🏛️ Thank you to those who have offered encouragement and advice.
 
-![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/feedback.png)
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/add-service-info/readme_assests/feedback.png)
 
 
 ## 🏛️ TODO
