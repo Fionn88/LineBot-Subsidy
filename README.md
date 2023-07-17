@@ -15,8 +15,10 @@
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/detail_feature.png)
 
+![](https://imgur.com/gallery/U8tC8kZ)
+
 - Introduction video: 
-[![Watch the video](https://img.youtube.com/vi/RaH3swoMWYw/hqdefault.jpg)](https://youtu.be/RaH3swoMWYw)
+[![Watch the video](https://github.com/Fionn88/LineBot-Subsidy/blob/add-service-info/readme_assests/ppt_player.png)](https://youtu.be/RaH3swoMWYw)
 
 - [ppt download](https://drive.google.com/file/d/1R4njQNKwtHTKzzHQTkVteTzIVxzNIlK6/view?usp=sharing)
 
