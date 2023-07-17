@@ -14,6 +14,11 @@
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/product_intro.png)
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/detail_feature.png)
+
+- Introduction video: 
+  - [ppt download](https://drive.google.com/file/d/1hpu6Ggz8XImg5wA0j51q1d8Q6pOuguQk/view?usp=sharing)
+[![Watch the video](https://img.youtube.com/vi/RaH3swoMWYw/maxresdefault.jpg)](https://youtu.be/RaH3swoMWYw)
+
  
 ### Getting Stated
 
@@ -83,6 +88,11 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/team_member.png)
 
 Reach as at: yubahotpot2023@gmail.com
+
+## 🏛️ Thank you to those who have offered encouragement and advice.
+
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/feedback.png)
+
 
 ## 🏛️ TODO
 
