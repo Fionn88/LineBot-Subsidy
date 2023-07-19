@@ -79,10 +79,11 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 
 ## 🏛️ Authors
 
-- [Vicky](https://github.com/POPOKE)
-- [Sunny](https://github.com/s-l-coder)
-- [Claire](https://github.com/chiahsuannn)
-- [Taylor](https://github.com/taylorwu541)
+- [Vicky 古嘉琪](https://github.com/POPOKE)
+- [Sunny 李羽珊](https://github.com/s-l-coder)
+- [Claire 林佳諠](https://github.com/chiahsuannn)
+- [Taylor 吳思儀](https://github.com/taylorwu541)
+- [Fionn 郭員亨](https://github.com/Fionn88)
 
 ## 🏛️ Team work
 
