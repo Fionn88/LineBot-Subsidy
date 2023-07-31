@@ -89,7 +89,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/team_member.png)
 
-Reach as at: yubahotpot2023@gmail.com
+Reach us at: yubahotpot2023@gmail.com
 
 ## 🏛️ Thank you to those who have offered encouragement and advice.
 
