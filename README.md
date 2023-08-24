@@ -14,6 +14,12 @@
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/product_intro.png)
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/detail_feature.png)
+
+- Introduction video: 
+[![Watch the video](https://github.com/Fionn88/LineBot-Subsidy/blob/add-service-info/readme_assests/ppt_player.png)](https://youtu.be/RaH3swoMWYw)
+
+- [ppt download](https://drive.google.com/file/d/1R4njQNKwtHTKzzHQTkVteTzIVxzNIlK6/view?usp=sharing)
+
  
 ### Getting Stated
 
@@ -73,16 +79,22 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 
 ## 🏛️ Authors
 
-- [Vicky](https://github.com/POPOKE)
-- [Sunny](https://github.com/s-l-coder)
-- [Claire](https://github.com/chiahsuannn)
-- [Taylor](https://github.com/taylorwu541)
+- [Vicky 古嘉琪](https://github.com/POPOKE)
+- [Sunny 李羽珊](https://github.com/s-l-coder)
+- [Claire 林佳諠](https://github.com/chiahsuannn)
+- [Taylor 吳思儀](https://github.com/taylorwu541)
+- [Fionn 郭員亨](https://github.com/Fionn88)
 
 ## 🏛️ Team work
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/team_member.png)
 
-Reach as at: yubahotpot2023@gmail.com
+Reach us at: yubahotpot2023@gmail.com
+
+## 🏛️ Thank you to those who have offered encouragement and advice.
+
+![image](https://github.com/Fionn88/LineBot-Subsidy/blob/add-service-info/readme_assests/feedback.png)
+
 
 ## 🏛️ TODO
 
