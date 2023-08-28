@@ -13,6 +13,7 @@ from data import (
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None
+serviceVersion = 'v1.0.3'
 
 # 文字傳入執行
 def handle_message(event) -> None:
@@ -31,10 +32,6 @@ def handle_message(event) -> None:
 
         elif messages == '個人資訊':
 
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
-
-        elif messages == '問題回報':
-            # 寫進 Google Sheet
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
 
         elif messages in category:
@@ -58,6 +55,9 @@ def handle_message(event) -> None:
 
             user_click_location = messages
             sendQuickreply(event, category,'selectCategory')
+
+        elif messages == '服務版本資訊':
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=f'服務版本為 {serviceVersion}，具體更新詳細內容請至：https://github.com/Fionn88/LineBot-Subsidy/releases'))
                 
 
         else:
