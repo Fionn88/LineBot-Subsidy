@@ -13,6 +13,7 @@ from data import (
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None
+serviceVersion = 'v1.0.3'
 
 # 文字傳入執行
 def handle_message(event) -> None:
@@ -27,20 +28,23 @@ def handle_message(event) -> None:
 
         if messages == '津貼查詢':
 
-            sendQuickreply(event, category,'selectCategory')
+            sendQuickreply(event, list(location_dict),'selectBigLocation')
 
         elif messages == '個人資訊':
-
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
-
-        elif messages == '問題回報':
 
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='敬請期待新功能！'))
 
         elif messages in category:
 
             user_click_category = messages
-            sendQuickreply(event,list(location_dict),'selectBigLocation')
+            if not user_click_location:
+                sendQuickreply(event,category,'selectCategory')
+            else:
+                result = searchByCategoryAndLocation(category_dict.get(user_click_category),user_click_location)
+                if result:
+                    sendList(event,user_click_category,user_click_location,result)
+                else:
+                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前沒有您選取的條件津貼，如想詳細查詢請到E政府'))
             
         elif messages in list(location_dict) :
 
@@ -50,14 +54,10 @@ def handle_message(event) -> None:
         elif messages in location_extract_list:
 
             user_click_location = messages
-            if not user_click_category:
-                sendQuickreply(event, category,'selectCategory')
-            else:
-                result = searchByCategoryAndLocation(category_dict.get(user_click_category),user_click_location)
-                if result:
-                    sendList(event,user_click_category,user_click_location,result)
-                else:
-                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前沒有您選取的條件津貼，如想詳細查詢請到E政府'))
+            sendQuickreply(event, category,'selectCategory')
+
+        elif messages == '服務版本資訊':
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=f'服務版本為 {serviceVersion}，具體更新詳細內容請至：https://github.com/Fionn88/LineBot-Subsidy/releases'))
                 
 
         else:
@@ -94,7 +94,7 @@ def handle_postback(event) -> None:
             print("=========================")
             print("Exception: ",e)
             print("=========================")
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤，請聯絡管理員!\n信箱：@gmail.com'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤，請聯絡管理員!\n信箱：yubahotpot2023@gmail.com'))
 
         else:
 
@@ -137,12 +137,12 @@ def sendConfirm(event,result,typeButton):
 
 def sendQuickreply(event, listData ,typeButton):
     actionsList = []
-    if typeButton == "selectCategory":
-         text = '請問您今天想要查詢哪個類別的津貼呢?'
-    elif typeButton == "selectLocation":
+    if typeButton == "selectLocation":
         text = '請問您的戶籍地是台灣哪區呢?'
     elif typeButton == "selectBigLocation":
         text = '請問您的戶籍地是哪個縣市呢?'
+    elif typeButton == "selectCategory":
+         text = '請問您今天想要查詢哪個類別的津貼呢?'
     for item in listData:
         actionsList.append(QuickReplyButton(action=MessageAction(label=item,text=item,data=f'action={typeButton},data={item}')))
     try:

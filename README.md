@@ -68,7 +68,7 @@ docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
 -e TEAM_EMAIL="YOUR EMAIL" \
 -p {Host Port}:{Container Port} \ 
 --network={same as mysql container network and you can connect mysql using the mysql container name => env: DB_HOST} --name fastapi-dev \
--d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.2
+-d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.3
 ```
 
 #### Our Data Structure
