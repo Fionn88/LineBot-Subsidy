@@ -28,7 +28,7 @@ def handle_message(event) -> None:
 
         if messages == '津貼查詢':
 
-            sendQuickreply(event, list(location_dict),'selectBigLocation')
+            sendQuickreply(event, list(location_dict),'selectLocation')
 
         elif messages == '個人資訊':
 
@@ -49,7 +49,7 @@ def handle_message(event) -> None:
         elif messages in list(location_dict) :
 
             location_list = location_dict.get(messages)
-            sendQuickreply(event,location_list,'selectLocation')
+            sendQuickreply(event,location_list,'selectBigLocation')
 
         elif messages in location_extract_list:
 
