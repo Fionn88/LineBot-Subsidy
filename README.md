@@ -2,7 +2,7 @@
 
 - The interface is in Mandarin.目前只支援繁體中文
 
-LINEBot_For_Subsidy_Search involves using Python for web scraping to gather government subsidy information and inputting the data into a database. Users can access this information through a LineBot. The inspiration behind this project was to help people who lost their jobs due to Covid-19, as many were unfamiliar with how to check for available subsidies.
+LINEBot_For_Subsidy_Search involves using Python for web scraping to gather [government subsidy information](https://www.gov.tw/) and inputting the data into a database. Users can access this information through a LineBot. The inspiration behind this project was to help people who lost their jobs due to Covid-19, as many were unfamiliar with how to check for available subsidies.
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/architecture_show.png)
 
