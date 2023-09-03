@@ -2,6 +2,8 @@
 
 - The interface is in Mandarin.目前只支援繁體中文
 
+LINEBot_For_Subsidy_Search involves using Python for web scraping to gather government subsidy information and inputting the data into a database. Users can access this information through a LineBot. The inspiration behind this project was to help people who lost their jobs due to Covid-19, as many were unfamiliar with how to check for available subsidies.
+
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/architecture_show.png)
 
 ## 🏛️ LineID：@044ejumg
@@ -21,61 +23,37 @@
 - [ppt download](https://drive.google.com/file/d/1R4njQNKwtHTKzzHQTkVteTzIVxzNIlK6/view?usp=sharing)
 
  
-### Getting Stated
+### Getting Started and Documentation
+
+For installation, see the [install](https://github.com/Fionn88/LineBot-Subsidy/blob/dev/docs/install.md) guide.
+
+### Report a Bug
+
+For filing bugs, suggesting improvements, or requesting new features, please open an [issue]().
+
+## 🏛️ Project Status
+
+### Function-related
+
+- [x] Basic categorization of subsidy queries in the backend for returning to LineBot
+  - [X] (After subsidy categorization) Backend fetching data from the database.
+- [x] Users inputting a subsidy ID, with the backend retrieving data from the database.
+- [x] Writing web scraping program data to the database.
+  - [X] Include subsidy categories.
+- [X] Problem reporting feature, form has been created.
+- [ ] Filter and respond to LineBot frontend options.
+- [ ] Optimize the criteria and content for subsidy responses.
+- [ ] You can use fuzzy search.
+- [ ] Personal information feature.
+  - [ ] User inputs personal information, and it is stored in the database.
+  - [ ] Recommend subsidies to the user.
 
 
-- [X] 津貼類別地點搜尋系統選單
+### Process-related
+- [X] To enhance the CI/CD Build Image process
+- [X] Deploying to [Fly.io](https://fly.io/)
+- [ ] Optimization of the web scraping process architecture has achieved automated data updates.
 
-
-#### 在本機端運行
-- 在專案資料夾內建立一個檔名為 .env 檔案，內容如下
-- 將 LINE_CHANNEL_ACCESS_TOKEN,LINE_CHANNEL_SECRET 內容變更為建立 LibeBot 時取得的 Token
-- 這裡的DB是使用MySQL
-
-```
-LINE_CHANNEL_SECRET = "{replace_me}"
-LINE_CHANNEL_ACCESS_TOKEN = "{replace_me}"
-PORT = "8001"
-DB_HOST = "example_host"
-DB_PORT = "3306"
-DB_USER = "example_user"
-DB_PASSWORD = "example_password"
-DB_SCHEMA = "example_schema"
-DB_TABLE = "example_table"
-TEAM_EMAIL = "example@gmail.com"
-```
-#### Use Host Run
-
-```
-poetry install
-```
-
-```
-poetry run python3 main.py
-```
-
-#### Use Docker Run
-```
-docker run -e LINE_CHANNEL_ACCESS_TOKEN="YOUR LINE CHANNEL ACCESS TOKEN" \
--e LINE_CHANNEL_SECRET="YOUR LINE CHANNEL SECRET" \
--e PORT="{Container Port}" \
--e DB_HOST="YOUR DB HOST" \
--e DB_PORT="YOUR DB PORT" \
--e DB_USER="YOUR DB USER" \
--e DB_PASSWORD="YOUR DB USER PASSWORD" \
--e DB_SCHEMA="YOUR DB USER SCHEMA" \
--e DB_TABLE="YOUR DB USER TABLE" \
--e TEAM_EMAIL="YOUR EMAIL" \
--p {Host Port}:{Container Port} \ 
---network={same as mysql container network and you can connect mysql using the mysql container name => env: DB_HOST} --name fastapi-dev \
--d ghcr.io/fionn88/linebot-subsidy-fastapi:v1.0.3
-```
-
-#### Our Data Structure
-
-| serial_no | name | category | organization_name | url | content | condition_list |
-| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| VARCHAR(20) | VARCHAR(90) | TEXT | TEXT | TEXT | TEXT | TEXT |
 
 ## 🏛️ Authors
 
@@ -94,25 +72,3 @@ Reach us at: yubahotpot2023@gmail.com
 ## 🏛️ Thank you to those who have offered encouragement and advice.
 
 ![image](https://github.com/Fionn88/LineBot-Subsidy/blob/main/readme_assests/feedback.png)
-
-
-## 🏛️ TODO
-
-### 功能相關
-- [x] 「津貼查詢」後端基本分類 Return LineBot
-  - [X] (津貼分類後)後端讀取資料庫
-- [x] 使用者直接輸入津貼ID，後端讀取資料庫
-- [x] 爬蟲程式寫入DB
-  - [X] 補上津貼分類
-- [ ] LineBot前端選項篩選與回覆
-- [ ] 優化回覆津貼條件和內容
-- [ ] 可使用模糊查詢
-- [ ] 個人資訊 功能
-  - [ ] 使用者輸入個人資訊，DB儲存
-  - [ ] 推薦津貼給使用者
-- [ ] 問題回報功能，直接發信給Team Email
-
-
-### 流程相關
-- [X] 增加CI/CD Build Image
-- [X] 佈署至Fly.io
