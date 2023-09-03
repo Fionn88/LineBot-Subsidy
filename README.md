@@ -29,7 +29,7 @@ For installation, see the [install](https://github.com/Fionn88/LineBot-Subsidy/b
 
 ### Report a Bug
 
-For filing bugs, suggesting improvements, or requesting new features, please open an [issue]().
+For filing bugs, suggesting improvements, or requesting new features, please open an [issue](https://github.com/Fionn88/LineBot-Subsidy/issues).
 
 ## 🏛️ Project Status
 
@@ -53,6 +53,10 @@ For filing bugs, suggesting improvements, or requesting new features, please ope
 - [X] To enhance the CI/CD Build Image process
 - [X] Deploying to [Fly.io](https://fly.io/)
 - [ ] Optimization of the web scraping process architecture has achieved automated data updates.
+
+## Licensing
+
+LINEBot_For_Subsidy_Search is under the [MIT license](https://github.com/Fionn88/LineBot-Subsidy/blob/main/LICENSE).
 
 
 ## 🏛️ Authors
