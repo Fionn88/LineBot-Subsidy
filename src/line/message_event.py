@@ -16,7 +16,7 @@ user_click_category = None
 user_click_location = None
 serviceVersion = 'v1.0.4'
 
-FORMAT = '%(asctime)s %(levelname)s:%(message)s'
+FORMAT = '%(asctime)s %(filename)s %(levelname)s:%(message)s'
 # 可變變數
 logging.basicConfig(level=logging.INFO, format=FORMAT)
 
@@ -46,7 +46,9 @@ def handle_message(event) -> None:
                 sendQuickreply(event,category,'selectCategory')
             else:
                 result = searchByCategoryAndLocation(category_dict.get(user_click_category),user_click_location)
-                if result:
+                if result == "Error":
+                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：'+config.TEAM_EMAIL))
+                elif result:
                     sendList(event,user_click_category,user_click_location,result)
                 else:
                     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前沒有您選取的條件津貼，如想詳細查詢請到E政府'))

@@ -1,5 +1,6 @@
 import pymysql
 import config
+import logging
 
 category = ['生育及育兒','學生','國民年金及勞工','中低收入','身心障礙','長者','房屋','親屬身故給付',"其他"]
 location_dict = {
@@ -39,8 +40,8 @@ def searchByCode(code):
              cursor.execute(command, (code,))
              result = cursor.fetchone()
              return result
-    except Exception as ex:
-        print(ex)
+    except Exception as e:
+        logging.error(e)
         return 'Error'
 
 def searchByCategoryAndLocation(category,location):
@@ -55,7 +56,5 @@ def searchByCategoryAndLocation(category,location):
              return result
         
     except Exception as e:
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
+        logging.error(e)
         return 'Error'
