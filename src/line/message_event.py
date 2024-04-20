@@ -4,6 +4,7 @@ from linebot.models import (
 )
 from linebot import LineBotApi
 import re
+import logging
 
 import config
 from data import (
@@ -13,7 +14,11 @@ from data import (
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 user_click_category = None  
 user_click_location = None
-serviceVersion = 'v1.0.3'
+serviceVersion = 'v1.0.4'
+
+FORMAT = '%(asctime)s %(filename)s %(levelname)s:%(message)s'
+# 可變變數
+logging.basicConfig(level=logging.INFO, format=FORMAT)
 
 # 文字傳入執行
 def handle_message(event) -> None:
@@ -41,7 +46,9 @@ def handle_message(event) -> None:
                 sendQuickreply(event,category,'selectCategory')
             else:
                 result = searchByCategoryAndLocation(category_dict.get(user_click_category),user_click_location)
-                if result:
+                if result == "Error":
+                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='資料庫發生錯誤，請聯絡管理員!\n信箱：'+config.TEAM_EMAIL))
+                elif result:
                     sendList(event,user_click_category,user_click_location,result)
                 else:
                     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='目前沒有您選取的條件津貼，如想詳細查詢請到E政府'))
@@ -84,16 +91,12 @@ def handle_postback(event) -> None:
             backdataSplit = event.postback.data.split(',')
             backtype = backdataSplit[0].split('=')[1]
             backdata = backdataSplit[1].split('=')[1]
-            print("=========================")
-            print('postbackType: ',backtype)
-            print('postbackData: ',backdata)
-            print("=========================")
+            logging.info('postbackType: ',backtype)
+            logging.info('postbackData: ',backdata)
 
         except Exception as e:
 
-            print("=========================")
-            print("Exception: ",e)
-            print("=========================")
+            logging.error("Exception: ",e)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=f'發生錯誤，請聯絡管理員!\n信箱：{config.TEAM_EMAIL}'))
 
         else:
@@ -129,9 +132,7 @@ def sendConfirm(event,result,typeButton):
         ))
         line_bot_api.reply_message(event.reply_token,message)
     except Exception as e:
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
+        logging.error("Exception: ",e)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
 
 
@@ -154,14 +155,12 @@ def sendQuickreply(event, listData ,typeButton):
         )
         line_bot_api.reply_message(event.reply_token,message)
     except Exception as e:
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
+        logging.error("Exception: ",e)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
 
 def sendContent(event,result):
     message = []
-    print(result)
+    logging.info(result)
     if re.match('.*尚未填寫申辦說明', result[5]) or len(result[5]) == 1:
         message.append(TextSendMessage(text='目前相關單位還沒填寫詳情，請直接點選查看更多至網頁查看更詳細資訊。'))
     else:
@@ -170,9 +169,7 @@ def sendContent(event,result):
         line_bot_api.reply_message(event.reply_token,message)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
+        logging.error("Exception: ",e)
 
 def sendList(event,category,location,result):
     message = []
@@ -191,6 +188,4 @@ def sendList(event,category,location,result):
         line_bot_api.reply_message(event.reply_token,message)
     except Exception as e:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤!'))
-        print("=========================")
-        print("Exception: ",e)
-        print("=========================")
+        logging.error("Exception: ",e)
