@@ -10,12 +10,13 @@ packages = [{include = "linebot_subsidy"}]
 python = "^3.11"
 pymysql = "^1.1.0"
 uvicorn = "^0.22.0"
+flake8 = "^7.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
 aiohttp = "3.8.4"
 aiosignal = "1.3.1"
-anyio = "4.1.0"
+anyio = "3.7.1"
 async-timeout = "4.0.3"
 attrs = "23.1.0"
 certifi = "2023.7.22"

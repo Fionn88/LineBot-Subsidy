@@ -11,6 +11,7 @@ handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
 
 line_app = APIRouter()
 
+
 @line_app.post("/")
 async def echoBot(request: Request):
     signature = request.headers["X-Line-Signature"]
@@ -21,20 +22,24 @@ async def echoBot(request: Request):
         raise HTTPException(status_code=400, detail="Missing Parameters")
     return "OK"
 
+
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_message(event) -> None:
     """Event - User sent message
 
     Args:
-        event (LINE Event Object): Refer to https://developers.line.biz/en/reference/messaging-api/#message-event
+        event (LINE Event Object): Refer to
+        https://developers.line.biz/en/reference/messaging-api/#message-event
     """
     message_event.handle_message(event=event)
+
 
 @handler.add(PostbackEvent)
 def handle_postback(event) -> None:
     """Event - User sent message
 
     Args:
-        event (LINE Event Object): Refer to https://developers.line.biz/en/reference/messaging-api/#message-event
+        event (LINE Event Object): Refer to
+        https://developers.line.biz/en/reference/messaging-api/#message-event
     """
     message_event.handle_postback(event=event)
