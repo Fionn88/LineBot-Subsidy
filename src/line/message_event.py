@@ -97,14 +97,17 @@ def handle_message(event) -> None:
                 match result:
                     case None:
                         line_bot_api.reply_message(event.reply_token,
-                                                   TextSendMessage(text='沒有此津貼ID'))
+                                                   TextSendMessage(
+                                                       text='沒有此津貼ID'
+                                                       ))
                     case "Error":
                         line_bot_api.reply_message(event.reply_token,
-                                                   TextSendMessage(text='資料庫發生錯誤， \
-                                                                   請聯絡管理員!\n 信箱：' +
-                                                                   config.
-                                                                   TEAM_EMAIL
-                                                                   ))
+                                                   TextSendMessage(
+                                                       text='資料庫發生錯誤， \
+                                                            請聯絡管理員!\n 信箱：' +
+                                                            config.
+                                                            TEAM_EMAIL
+                                                        ))
                     case _:
                         sendConfirm(event, result, 'sendConfirm')
 
