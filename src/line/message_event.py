@@ -94,18 +94,19 @@ def handle_message(event) -> None:
                                            TextSendMessage(text='請輸入津貼ID查詢津貼'))
             else:
                 result = searchByCode(messages)
-                if result is None:
-                    line_bot_api.reply_message(event.reply_token,
-                                               TextSendMessage(text='沒有此津貼ID'))
-                elif result == 'Error':
-                    line_bot_api.reply_message(event.reply_token,
-                                               TextSendMessage(text='資料庫發生錯誤， \
-                                                               請聯絡管理員!\n 信箱：' +
-                                                               config.
-                                                               TEAM_EMAIL
-                                                               ))
-                else:
-                    sendConfirm(event, result, 'sendConfirm')
+                match result:
+                    case None:
+                        line_bot_api.reply_message(event.reply_token,
+                                                   TextSendMessage(text='沒有此津貼ID'))
+                    case "Error":
+                        line_bot_api.reply_message(event.reply_token,
+                                                   TextSendMessage(text='資料庫發生錯誤， \
+                                                                   請聯絡管理員!\n 信箱：' +
+                                                                   config.
+                                                                   TEAM_EMAIL
+                                                                   ))
+                    case _:
+                        sendConfirm(event, result, 'sendConfirm')
 
 
 # 按按鈕後回傳資訊執行
@@ -169,12 +170,15 @@ def sendConfirm(event, result, typeButton):
 
 def sendQuickreply(event, listData, typeButton):
     actionsList = []
-    if typeButton == "selectLocation":
-        text = '請問您的戶籍地是台灣哪區呢?'
-    elif typeButton == "selectBigLocation":
-        text = '請問您的戶籍地是哪個縣市呢?'
-    elif typeButton == "selectCategory":
-        text = '請問您今天想要查詢哪個類別的津貼呢?'
+
+    match typeButton:
+        case "selectLocation":
+            text = '請問您的戶籍地是台灣哪區呢?'
+        case "selectBigLocation":
+            text = '請問您的戶籍地是哪個縣市呢?'
+        case "selectCategory":
+            text = '請問您今天想要查詢哪個類別的津貼呢?'
+
     for item in listData:
         actionsList.append(QuickReplyButton(action=MessageAction
                                             (label=item, text=item,
